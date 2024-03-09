@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GalwayGo.BudgetPlannerPage"
+             Title="Budget Planner">
+    <StackLayout>
+        <Label Text="Budget Planner" FontSize="24" HorizontalOptions="CenterAndExpand" Margin="0,20"/>
+
+        <!-- Currency selection drop-down menu -->
+        <Picker x:Name="currencyPicker" Title="Select Currency" SelectedIndexChanged="OnCurrencyChanged">
+            <!-- Define your list of currencies here -->
+            <Picker.ItemsSource>
+                <x:String>EUR</x:String>
+                <x:String>USD</x:String>
+                <x:String>GBP</x:String>
+                <!-- Add more currencies as needed -->
+            </Picker.ItemsSource>
+        </Picker>
+
+        <!-- Add a ListView to display selected activities -->
+        <ListView x:Name="activityListView" ItemsSource="{Binding SelectedActivities}" Margin="20">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Name}" FontSize="18"/>
+                            <Label Text="{Binding Price, StringFormat=' - {0:C}'}" FontSize="18"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+         <!-- Add a button to remove activities -->
+        <Button Text="Remove Activity" Clicked="OnRemoveActivityClicked" HorizontalOptions="CenterAndExpand" Margin="0,20"/>
+
+        <!-- Add a button to disable the budget planner -->
+        <Button Text="Disable Budget Planner" Clicked="OnDisableBudgetPlannerClicked" HorizontalOptions="CenterAndExpand" Margin="0,20"/>
+
+        <!-- Add an entry for user to input spending money -->
+        <Entry x:Name="spendingEntry" Placeholder="Enter Your Budget" Keyboard="Numeric" Margin="20"/>
+
+        <!-- Add a button to trigger suggestions -->
+        <Button Text="Get Suggestions" Clicked="OnGetSuggestionsClicked" HorizontalOptions="CenterAndExpand" Margin="0,20"/>
+
+        <!-- Add a ListView to display suggestions -->
+        <ListView x:Name="suggestionsListView" ItemsSource="{Binding Suggestions}" Margin="20">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Name}" FontSize="18"/>
+                            <Label Text="{Binding Price, StringFormat=' - {0:C}'}" FontSize="18"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!-- Add a button to disable the budget planner -->
+        <Button Text="Disable Budget Planner" Clicked="OnDisableBudgetPlannerClicked" HorizontalOptions="CenterAndExpand" Margin="0,20"/>
+    </StackLayout>
+</ContentPage>
